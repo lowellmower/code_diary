@@ -6,3 +6,8 @@ In my day to day I encounter intriguing topics, typically in conversations with 
 What can be found here is by no means meant to be an example of the best possible solution, both in time and space respectively. Rather, these examples are a vignette for my future self; a connection for my future self to the engineer in the present.
 
 Enjoy.
+
+### Topics:
+- [Data Structures]()
+- [Algorithms]()
+- [Problems]()
