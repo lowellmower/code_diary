@@ -1,7 +1,5 @@
 package main
 
-type nodeFunc func(*Node)
-
 // List is the struct for building a collection of nodes
 // which could then, by their fields and attributes determine
 // the list type, e.g. linked list, doubly linked list,
@@ -17,5 +15,3 @@ type Node struct {
 	Prev *Node
 	Next *Node
 }
-
-
