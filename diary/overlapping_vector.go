@@ -1,4 +1,4 @@
-package main
+package diary
 
 func max(vectors [][]int) (max_x int, max_y int) {
 	max_x = vectors[0][0]

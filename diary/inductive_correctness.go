@@ -1,4 +1,4 @@
-package main
+package diary
 
 // inductive correctness with recursion
 func increment(n int) int {

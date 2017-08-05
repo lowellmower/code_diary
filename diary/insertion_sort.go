@@ -1,4 +1,4 @@
-package main
+package diary
 
 func insertionSort(s []int) {
 	for i, _ := range s {

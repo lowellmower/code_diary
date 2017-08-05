@@ -11,3 +11,6 @@ Enjoy.
 - [Data Structures]()
 - [Algorithms]()
 - [Problems]()
+
+### Notes:
+It should be noted that the structure of this repository is not necessarily a reflection of how Go code should be organized (related to packages anyhow) and was done intentionally to promote test driven solutions. For example, a test will be written in the diary to exemplify the problem and the solution will be written by developing and importing the packages necessary to make that test pass.

@@ -1,4 +1,20 @@
-package main
+package structures
+
+// List is the struct for building a collection of nodes
+// which could then, by their fields and attributes determine
+// the list type, e.g. linked list, doubly linked list,
+// circularly linked list, etc.
+type List struct {
+	Head *Node
+}
+
+// Node is the struct which encompasses data being inserted
+// into a list.
+type Node struct {
+	Data interface{}
+	Prev *Node
+	Next *Node
+}
 
 func (list *List) Insert(data interface{}) {
 	n := &Node{Data: data}
@@ -23,7 +39,7 @@ func (list *List) Insert(data interface{}) {
 func (list *List) Unique() bool {
 	tracker := make(map[interface{}]bool)
 	node := list.Head
-	if node == nil || node.isLast() {
+	if list.isEmpty() || node.isLast() {
 		return true
 	}
 	for {
@@ -37,6 +53,21 @@ func (list *List) Unique() bool {
 		node = node.Next
 	}
 	return true
+}
+
+func (list *List) Length() int {
+	var counter int
+	if list.isEmpty() {
+		return counter
+	}
+	n := list.Head
+	for {
+		counter++
+		if n.isLast() {
+			return counter
+		}
+		n = n.Next
+	}
 }
 
 func (list *List) isEmpty() bool {

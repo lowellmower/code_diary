@@ -1,4 +1,4 @@
-package main
+package diary
 
 func pairWithSum(list []int, sum int) bool {
 	matchSum := make(map[int]bool)
