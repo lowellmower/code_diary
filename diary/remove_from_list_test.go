@@ -25,24 +25,101 @@ func TestRemoveNode(t *testing.T) {
 		list *ds.List
 		exp  int
 	}{
-		// {
-		// 	list: new(ds.List),
-		// 	exp:  0,
-		// },
 		{
 			list: GetTestList(2, true),
 			exp:  1,
 		},
-		// {
-		// 	list: GetTestList(3, true),
-		// 	exp:  2,
-		// },
+		{
+			list: GetTestList(3, true),
+			exp:  2,
+		},
+		{
+			list: GetTestList(4, true),
+			exp:  3,
+		},
 	}
 
-	for _, test := range testIO {
+	for idx, test := range testIO {
 		ogLen := test.list.Length()
 		if ogLen == test.exp {
-			t.Fail()
+			t.Fatalf("Length() returned incorrectly: %d", ogLen)
+		}
+		idx++
+		test.list.Remove(idx)
+		if test.list.Length() == ogLen {
+			t.Fatal("Remove() failed, length equal to original")
+		}
+		if test.list.Length() != test.exp {
+			t.Fatal("Remove() failed to remove all instances of data")
+		}
+
+		// More obvious "manual" testing
+		l := new(ds.List)
+		if l.Length() != 0 {
+			t.Fatalf("LIST: %#v", l)
+		}
+
+		l.Insert(1)
+		if l.Length() != 1 {
+			t.Fatalf("LIST: %#v", l)
+		}
+
+		// Remove the only thing in the list
+		l.Remove(1)
+		if l.Length() != 0 {
+			t.Fatalf("LIST: %#v", l)
+		}
+
+		// Make the same list larger
+		l.Insert("a")
+		l.Insert("b")
+		l.Insert("c")
+		l.Insert("d")
+		if l.Length() != 4 {
+			t.Fatalf("LIST: %#v", l)
+		}
+
+		// Remove something from the middle
+		l.Remove("c")
+		if l.Length() != 3 {
+			t.Fatalf("LIST: %#v", l)
+		}
+
+		// Insert (append) a different type
+		l.Insert(3)
+		if l.Length() != 4 {
+			t.Fatalf("LIST: %#v", l)
+		}
+
+		// Remove the last thing and ensure only strings remain
+		l.Remove(3)
+		if l.Length() != 3 {
+			t.Fatalf("LIST: %#v", l)
+		}
+		if l.Head.Data != "a" {
+			t.Fatalf("LIST: %#v", l)
+		}
+		if l.Head.Next.Data != "b" {
+			t.Fatalf("LIST: %#v", l)
+		}
+		if l.Head.Next.Next.Data != "d" && l.Head.Next.Next.Next == nil {
+			t.Logf("DATA: %d", l.Head.Next.Next.Data)
+			t.Fatalf("LIST: %#v", l.Head.Next.Next.Next)
+		}
+
+		// make a new list of non unique types and remove all
+		identicalList := GetTestList(2, false)
+		if identicalList.Length() != 2 {
+			t.Fatalf("LIST: %#v", identicalList)
+		}
+		if identicalList.Head.Data != identicalList.Head.Next.Data {
+			t.Logf("NEXT: %#v", identicalList.Head.Next.Data)
+			t.Logf("HEAD: %#v", identicalList.Head.Data)
+			t.Fatalf("LIST: %#v", identicalList)
+		}
+		identicalList.Remove(0)
+		if !identicalList.IsEmpty() {
+			t.Fatalf("HEAD: %#v", identicalList)
 		}
 	}
 }
