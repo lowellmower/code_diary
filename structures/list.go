@@ -82,26 +82,43 @@ func (list *List) Remove(v interface{}) {
 	}
 
 	for {
-		// [ 0, 0 ]
 		next := node.Next
-		if next == nil {
-			return
-		}
+
 		if next.isLast() && next.Data == v {
 			node.Next = next.Next
 		}
-		if node.isLast() && node.Data == v && node == list.Head {
-			list.Head = nil
-			return
-		}
-		if node.isLast() {
-			return
-		}
+
 		if node.Data == v {
-			node.Data = next.Data
-			node.Next = next.Next
+			node = next
 		}
+
+		if next.Data == v {
+			next.Data = next.Next.Data
+			next.Next = next.Next
+		}
+
 		node = next
+
+		// // [a,a,a]
+		// next := node.Next
+		// if next == nil {
+		// 	return
+		// }
+		// if next.isLast() && next.Data == v {
+		// 	node.Next = next.Next
+		// }
+		// if node.isLast() && node.Data == v && node == list.Head {
+		// 	list.Head = nil
+		// 	return
+		// }
+		// if node.isLast() {
+		// 	return
+		// }
+		// if node.Data == v {
+		// 	node.Data = next.Data
+		// 	node.Next = next.Next
+		// }
+		// node = next
 	}
 }
 

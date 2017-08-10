@@ -121,5 +121,22 @@ func TestRemoveNode(t *testing.T) {
 		if !identicalList.IsEmpty() {
 			t.Fatalf("HEAD: %#v", identicalList)
 		}
+
+		identicalList = GetTestList(3, false)
+		if identicalList.Length() != 3 {
+			t.Fatalf("LIST: %#v", identicalList)
+		}
+		if identicalList.Head.Data != identicalList.Head.Next.Data {
+			t.Logf("NEXT: %#v", identicalList.Head.Next.Data)
+			t.Logf("HEAD: %#v", identicalList.Head.Data)
+			t.Fatalf("LIST: %#v", identicalList)
+		}
+		identicalList.Remove(0)
+		if !identicalList.IsEmpty() {
+			t.Logf("NEXT: %#v", identicalList.Head.Next)
+			t.Logf("HEAD: %#v", identicalList.Head)
+			t.Fatalf("LIST: %#v", identicalList)
+		}
+
 	}
 }
