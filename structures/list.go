@@ -8,12 +8,8 @@ type List struct {
 	Head *Node
 }
 
-// Node is the struct which encompasses data being inserted
-// into a list.
-type Node struct {
-	Data interface{}
-	Prev *Node
-	Next *Node
+func NewList() (l List) {
+	return
 }
 
 func (list *List) Insert(data interface{}) {

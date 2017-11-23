@@ -16,10 +16,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/lowellmower/code_diary/diary"
+	// "github.com/lowellmower/code	_diary/diary"
+	"github.com/lowellmower/code_diary/structures"
 )
 
 func main() {
-	list := diary.NewList()
+	bTree := structures.NewBTree()
+	list := TreeToLinkedList(bTree)
 	fmt.Println(list)
 }
